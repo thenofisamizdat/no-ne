@@ -9,6 +9,7 @@
     <link href="sidebar.css" rel="stylesheet">
     <link href="stylesheets/noteToolBar.css" rel="stylesheet">
     <link href="stylesheets/connectBar.css" rel="stylesheet">
+    <link href="stylesheets/topBar.css" rel="stylesheet">
 
     <script src="js/jquery.js"></script>
 <!--
@@ -24,9 +25,11 @@
     <script src="javascripts/signIn.js"></script>
     <script src="javascripts/noteToolBar.js"></script>
     <script src="javascripts/suggestions.js"></script>
+    <script src="javascripts/history.js"></script>
     
 
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 </head>
 <body>
@@ -96,6 +99,8 @@
 </div>
 
 <div class="toolbar">
+    <div class="historyBack">b</div>
+    <div class="historyForward">f</div>
     <div class="logInOut">Login / Signup</div>
 </div>
 
@@ -149,6 +154,9 @@
         
         getNoteBooks();
         getNotes();
+        
+        historyButtons();
+        updateButtonStatus();
         
         loginListener();
         $('.signUp').hide();

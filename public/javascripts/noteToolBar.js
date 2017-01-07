@@ -2,8 +2,32 @@ var createStoryButtonPressed = false;
 var selectedStories = [];
 var storySearchBox = "";
 
-var currentTitle = "test";
-var currentNote = "bar";
+var currentTitle = "";
+var currentNote = "";
+
+function getNoteToolBarStatus(){
+    var ntbStatus = {};
+    ntbStatus.selectedStories = selectedStories;
+    ntbStatus.storySearchBox = storySearchBox;
+    ntbStatus.createStoryButtonPressed = createStoryButtonPressed;
+    ntbStatus.currentTitle = currentTitle;
+    ntbStatus.currentNote = currentNote;
+    
+    if (currentNote || currentTitle != "") return ntbStatus;
+    return false;
+}
+
+function setNoteToolBarStatus(ntbStatus){
+    console.log(ntbStatus)
+    selectedStories = ntbStatus.selectedStories;
+    storySearchBox = ntbStatus.storySearchBox;
+    createStoryButtonPressed = ntbStatus.createStoryButtonPressed;
+    currentTitle = ntbStatus.currentTitle;
+    currentNote = ntbStatus.currentNote;
+    
+    populateNoteBookAddedList();
+    populateNote();
+}
 
 function noteToolBarControl() {
     
@@ -156,6 +180,11 @@ function returnSelectedStoryString(noteid){
         storyString.push(selectedStories[story]);
     }
     return storyString;
+};
+
+function populateNote(){
+    $('.enterTitle').val(currentTitle);
+    $('.enterNote').val(currentNote);
 };
 
 function populateNoteBookAddedList(){

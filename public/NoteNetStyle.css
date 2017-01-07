@@ -2,7 +2,9 @@ html, body{
     height: 99%;
     width:100%;
     /*font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';*/
-    font-family: Verdana, Geneva, sans-serif;
+/*    font-family: Verdana, Geneva, sans-serif;*/
+/*    font-family: 'Oswald', sans-serif;*/
+    font-family: 'Nunito', sans-serif;
     background-color: #bbb;
 }
 .frame{

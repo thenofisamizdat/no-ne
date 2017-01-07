@@ -31,6 +31,14 @@ var connectBarListener = function(){
     });
     $('.suggestionNote').live('click', function(){
         console.log (this.id)
+        addToHistory(false);
+        var ntbStatus = {};
+        ntbStatus.selectedStories = [];
+        ntbStatus.storySearchBox = "";
+        ntbStatus.createStoryButtonPressed = false;
+        ntbStatus.currentTitle = notes[this.id].noteTitle;
+        ntbStatus.currentNote = notes[this.id].noteContent; 
+        setNoteToolBarStatus(ntbStatus);
     })
 };
 
