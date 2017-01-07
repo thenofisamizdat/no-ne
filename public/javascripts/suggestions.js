@@ -29,6 +29,9 @@ var connectBarListener = function(){
     $('.expand').live('click', function(){
         
     });
+    $('.suggestionNote').live('click', function(){
+        console.log (this.id)
+    })
 };
 
 var buildSuggestionList = function (){
@@ -39,7 +42,8 @@ var buildSuggestionList = function (){
         var suggestedObject = suggestedNetworkNoteBookContainer[i];
         var suggestion = "<div class='suggestion'><div class='suggestionNoteBook'>"+stories[suggestedObject['id']].storyTitle+"<div class='expand'></div></div>";
             for (var j = 0; j < stories[suggestedObject['id']].notes.length; j++){
-                suggestion += "<div class='suggestionNote'>"+ stories[suggestedObject['id']].notes[j] + "</div>"
+                var noteID = stories[suggestedObject['id']].notes[j]
+                suggestion += "<div class='suggestionNote' id='"+noteID+"'>"+ notes[noteID].noteTitle + "</div>"
             }
         suggestion += "</div>"
         $('.suggestionBox').append(suggestion);
