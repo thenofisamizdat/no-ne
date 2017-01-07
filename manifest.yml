@@ -1,0 +1,7 @@
+---
+applications:
+- name:    no-ne
+  host:    no-ne
+  memory:  128M
+  services:
+    - redis-none-dev

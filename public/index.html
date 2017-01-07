@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Note Networkk</title>
+
+    <link href="NoteNetStyle.css" rel="stylesheet">
+    <link href="sidebar.css" rel="stylesheet">
+    <link href="stylesheets/noteToolBar.css" rel="stylesheet">
+    <link href="stylesheets/connectBar.css" rel="stylesheet">
+
+    <script src="js/jquery.js"></script>
+<!--
+    <script src="js/noteNetAPI.js"></script>
+    <script src="js/noteNetEngine.js"></script>
+    <script src="js/watsonAPI.js"></script>
+-->
+    
+    <script src="Model/model.js"></script>
+    <script src="brain/brain.js"></script>
+    <script src="javascripts/api.js"></script>
+<!--    <script src="javascripts/porterStemmer.js"></script>-->
+    <script src="javascripts/signIn.js"></script>
+    <script src="javascripts/noteToolBar.js"></script>
+    <script src="javascripts/suggestions.js"></script>
+    
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+    
+    <div class="connectBarFrame">
+        <div class="connectBarTitle">SUGGESTED</div>
+        <div class="suggestedSource">
+            <div class="sourceText">network</div>
+            <div class="sourceText">personal</div>
+            <div class="sourceHighlight"></div> 
+        </div>
+        <div class="suggestionBox">
+            
+            <div class='suggestion'>
+                <div class="suggestionNoteBook">Test <div class='expand'></div></div>
+                <div class='suggestionNote'>tnote</div>
+                <div class='suggestionNote'>tnote</div>
+            </div>
+        
+            <div class='suggestion'>
+                <div class="suggestionNoteBook">Schtit <div class='expand'></div></div>
+                <div class='suggestionNote'>ken</div>
+                <div class='suggestionNote'>erdedy</div>
+            </div>
+        </div>
+        <div class="suggestedContent">
+            <div class="sourceText">notebooks</div>
+            <div class="sourceText">notes</div>
+            <div class="sourceHighlight"></div> 
+        </div>
+        
+    </div>
+    
+    <div class="signUpBG logReg"></div>
+     	<div class="signUp logReg">
+     		<div class="signUpLeft">
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine">SIGN IN</div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="loginUsername" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="loginPassword" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine LoginButton" style="background-color: #000; color: #fff;cursor:pointer;">Login</div>
+     		</div>
+     		<div class="signUpMid"></div>
+     		<div class="signUpRight">
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine">REGISTER</div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">name:</div><input class="regName" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="regUsername" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">email:</div><input class="regEmail" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="regPass" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">confirm:</div><input type="password" class="regConfirm" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"></div>
+     			<div class="signUpLine RegisterButton" style="background-color: #000; color: #fff; cursor: pointer;">Register</div>
+     		</div>
+     	</div>
+
+<div class="bottomToolbar">
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+</div>
+
+<div class="toolbar">
+    <div class="logInOut">Login / Signup</div>
+</div>
+
+<div class="centerColumn">
+
+        <input class="enterTitle" placeholder="New Note Title">
+        <textarea class="enterNote" placeholder="Start typing your note..."></textarea>
+                
+        <div class="noteToolBar">
+            <div class="addToNoteBook"><span class="nbAdd">Add to NoteBook(s) </span>
+                
+                <div class="noteBookSelect">
+                <span>Add to</span>
+                    <input class="searchNoteBooks" placeholder="search for notebook...">
+                        <div class="noteBookList">
+
+
+                        </div>
+                    <div class="newNoteBook">
+                        <span class="createPrompt" style="display:block;">Create new NoteBook</span>
+                        <input class="newNoteBookTitle" placeholder="enter notebook title..." style="display: none;">
+                    </div>
+
+                </div>
+            </div>
+            <div class="addedToNoteBookTitle">Note will be added to the following notebooks </div>
+            <div class="addedToNoteBookList"></div>
+        </div>
+    
+    <div class="bottomBar">
+            <div class="dateCreated">flush</div>
+            <div class="saveButton">save</div>
+            <div class="suggestButton">suggest</div>
+<!--            <div class="grab">grab</div>-->
+        </div>
+    
+    
+    
+    <div class="noteBookListEntry" id = "nbeTemplate" style="display: none;">
+        					<div class="nbeSelected"></div>
+        					<div class="nbeTitle">linux</div>
+        				</div>
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+       // getWatsonToken();
+        //buttonListeners();
+        //openNav();
+        noteToolBarControl();
+        connectBarListener();
+        
+        getNoteBooks();
+        getNotes();
+        
+        loginListener();
+        $('.signUp').hide();
+       $('.signUpBG').hide();
+        if (loggedIn){
+    	$('.logInOut').html ("Log Out");
+    }
+    else{
+    	$('.logInOut').html ("Login / Signup");
+    }
+
+    });
+</script>
+
+</body>
+</html>

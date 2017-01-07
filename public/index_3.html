@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Note Network</title>
+
+    <link href="NoteNetStyle.css" rel="stylesheet">
+    <link href="sidebar.css" rel="stylesheet">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/noteNetAPI.js"></script>
+    <script src="js/noteNetEngine.js"></script>
+    <script src="js/watsonAPI.js"></script>
+ <!--   <script src="./js/recorder.js"></script>
+    <script src="./js/audioEngine.js"></script>
+    <script src="./js/newRecorder.js"></script>
+    <script src="./js/sideNav.js"></script>  --> 
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<!--SIDEBAR
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="addNote">NEW NOTE</div>
+
+    <div>
+    <a href="#">DISCOVER</a>
+    <a href="#">NOTES</a>
+    <a href="#">NOTEBOOKS</a>
+    <a href="#">PROFILE</a>
+    </div>
+</div> -->
+
+<div class="frame"></div>
+<div class="bottomToolbar">
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+	<div class="bottomBarButton"></div>
+</div>
+<!-- Use any element to open the sidenav -->
+
+
+<div class="toolbar">
+    <div class="menuButton" onclick="openNav()"></div>
+   <!-- <div class="recordNote"></div> -->
+    <div class="profilePic"></div>
+    <div class="profileName">
+
+    </div>
+
+    <div class="fbloginbutton">
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+    </div>
+
+
+</div>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+
+
+
+
+    <div class="centerColumn">
+        <!--<div class="lines"></div>-->
+
+        <input class="enterTitle" placeholder="enter title">
+        <textarea class="enterNote" placeholder="enter note"></textarea>
+        <div class="bottomBar">
+            <div class="dateCreated">date created: 23/07/20166</div>
+            <div class="saveButton">save</div>
+            <!--<div class="suggestButton">suggest</div>-->
+            <div class="grab">grab</div>
+        </div>
+        <!--<div class="list">-->
+        <!--<div class="listElement"></div>-->
+        <!--</div>-->
+
+    </div>
+    
+    
+    <div class="relatedNotes">related notes</div>
+    <div class ="searchRelatedNotes">
+        <div class ="searchButton">GO</div>
+        <input class="searchTerm" placeholder="search notes">
+        <div class="searchTitle">search: </div>
+    </div>
+    <div class="leftColumn">
+        <!--<ul id="recordingslist"></ul>-->
+
+        <div class="leftHeader">from notes</div>
+
+        <!--<div class="addNote">NEW</div>-->
+
+
+        <div class="noteCardList">
+
+        </div>
+    </div>
+    <div class="rightColumn">
+        <div class="leftHeader" style="float: right;">from network</div>
+        <!--<div class="updateSuggestion" style="float: left;">UPDATE</div>-->
+
+        <div id="suggestCardList">
+
+        </div>
+
+
+    </div>
+
+    <div class="noteCard" id="noteCardTemplate" style="display: none;">
+        <div class="profilePic"></div>
+        <div class="profileName">
+        <div class="noteTitle"></div>
+        <div class="noteBody"></div>
+    </div>
+
+</div>
+
+<div id="dataUrlcontainer" hidden></div>
+
+<script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            $('.fbloginbutton').hide();
+            testAPI();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into Facebook.';
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+        console.log('Welcome!  Fetching your information.... ' );
+        FB.api('/me', function(response) {
+            console.log(response);
+            $('.profileName').html(response.name);
+            uid = response.id;
+            getUserNotes({searchType:"userSearch", searchQuery:"", noteId:0, uid:uid});
+            getGrabCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserGrabs"});
+            getViewCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserViews"});
+//            getSuggestions({searchType:"noteSearch", searchQuery:currentNote, noteId:currentNoteId, uid:uid});
+            getProfilePic(uid);
+        });
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '331461283908866',
+            xfbml      : true,
+            version    : 'v2.7'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       // getWatsonToken();
+        buttonListeners();
+        openNav();
+
+    });
+</script>
+
+
+
+
+
+</body>
+</html>
