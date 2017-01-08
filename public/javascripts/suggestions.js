@@ -48,12 +48,16 @@ var buildSuggestionList = function (){
     
     for (var i = 0; i < suggestedNetworkNoteBookContainer.length; i++){
         var suggestedObject = suggestedNetworkNoteBookContainer[i];
-        var suggestion = "<div class='suggestion'><div class='suggestionNoteBook'>"+stories[suggestedObject['id']].storyTitle+"<div class='expand'></div></div>";
-            for (var j = 0; j < stories[suggestedObject['id']].notes.length; j++){
-                var noteID = stories[suggestedObject['id']].notes[j]
-                suggestion += "<div class='suggestionNote' id='"+noteID+"'>"+ notes[noteID].noteTitle + "</div>"
-            }
-        suggestion += "</div>"
-        $('.suggestionBox').append(suggestion);
+        if ((networkSource && stories[suggestedObject['id']].userID != userID)
+            || (!networkSource && stories[suggestedObject['id']].userID == userID)){
+                var suggestion = "<div class='suggestion'><div class='suggestionNoteBook'>"+stories[suggestedObject['id']].storyTitle+"<div class='expand'></div></div>";
+                    for (var j = 0; j < stories[suggestedObject['id']].notes.length; j++){
+                        var noteID = stories[suggestedObject['id']].notes[j]
+                        suggestion += "<div class='suggestionNote' id='"+noteID+"'>"+ notes[noteID].noteTitle + "</div>"
+                    }
+                suggestion += "</div>"
+                $('.suggestionBox').append(suggestion);    
+        }
+        
     }
 }

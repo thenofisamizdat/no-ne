@@ -9,6 +9,7 @@
     <link href="sidebar.css" rel="stylesheet">
     <link href="stylesheets/noteToolBar.css" rel="stylesheet">
     <link href="stylesheets/connectBar.css" rel="stylesheet">
+    <link href="stylesheets/navigationBar.css" rel="stylesheet">
     <link href="stylesheets/topBar.css" rel="stylesheet">
 
     <script src="js/jquery.js"></script>
@@ -26,6 +27,7 @@
     <script src="javascripts/noteToolBar.js"></script>
     <script src="javascripts/suggestions.js"></script>
     <script src="javascripts/history.js"></script>
+    <script src="javascripts/navigation.js"></script>
     
 
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -33,6 +35,14 @@
 
 </head>
 <body>
+    
+    <div class="navigationBarFrame">
+        <div class='createButtons'>
+            <div class="navNewNote">new note</div>
+            <div class="navNewNoteBook">new notebook</div>
+        </div>
+
+    </div>
     
     <div class="connectBarFrame">
         <div class="connectBarTitle">SUGGESTED</div>
@@ -43,6 +53,7 @@
         </div>
         <div class="suggestionBox">
             
+<!--
             <div class='suggestion'>
                 <div class="suggestionNoteBook">Notebewk aboot sumit <div class='expand'></div></div>
                 <div class='suggestionNote'>noot</div>
@@ -53,6 +64,7 @@
                 <div class='suggestionNote'>ken</div>
                 <div class='suggestionNote'>erasdasdsdasddedy</div>
             </div>
+-->
         </div>
         <div class="suggestedContent">
             <div class="sourceText">notebooks</div>
@@ -154,6 +166,8 @@
         
         getNoteBooks();
         getNotes();
+        
+        navButtons();
         
         historyButtons();
         updateButtonStatus();
