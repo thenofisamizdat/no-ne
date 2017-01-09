@@ -132,9 +132,7 @@
     <div class="logInOut">Login / Signup</div>
 </div>
 
-    
-    <div class="noteDisplayArea">
-        <div class="noteDisplay" style="display:block;">
+    <div class="noteDisplay" id="noteDisplayTemplate" style="display:none;">
             <div class="ndUserDetails">
                 <div class="ndUserPic"></div>
                 <div class="ndUsername">neil byrne</div>
@@ -154,11 +152,21 @@
                 <div class="ndGrabNote">grab</div>
             </div>
         </div>
+    
+    <div class="noteDisplayAreaHeader nda">
+        <div class="ndaHeaderTitle">notes</div>
+        <div class="ndaHeaderSearch"></div>
+        <div class="dark">
+            <span><input type="text" class="search rounded" placeholder="Search..."></span>
+        </div>
+    </div>
+    <div class="noteDisplayArea nda actionArea" style="display:none;">
+        
     </div>
     
 
     
-    <div class="centerColumn noteCreation" style="display:none;">
+    <div class="centerColumn noteCreation actionArea" style="display:none;">
 <!--        <div class="centerColumn">-->
         <input class="enterTitle" placeholder="New Note Title">
             <textarea class="enterNote" placeholder="Start typing your note..."></textarea>
