@@ -7,10 +7,11 @@
 
     <link href="NoteNetStyle.css" rel="stylesheet">
     <link href="sidebar.css" rel="stylesheet">
-    <link href="stylesheets/noteToolBar.css" rel="stylesheet">
+    <link href="stylesheets/noteCreation.css" rel="stylesheet">
     <link href="stylesheets/connectBar.css" rel="stylesheet">
     <link href="stylesheets/navigationBar.css" rel="stylesheet">
     <link href="stylesheets/topBar.css" rel="stylesheet">
+    <link href="stylesheets/noteDisplay.css" rel="stylesheet">
 
     <script src="js/jquery.js"></script>
 <!--
@@ -24,10 +25,11 @@
     <script src="javascripts/api.js"></script>
 <!--    <script src="javascripts/porterStemmer.js"></script>-->
     <script src="javascripts/signIn.js"></script>
-    <script src="javascripts/noteToolBar.js"></script>
+    <script src="javascripts/noteCreation.js"></script>
     <script src="javascripts/suggestions.js"></script>
     <script src="javascripts/history.js"></script>
     <script src="javascripts/navigation.js"></script>
+    <script src="javascripts/noteDisplay.js"></script>
     
 
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -36,7 +38,21 @@
 </head>
 <body>
     
+    
     <div class="navigationBarFrame">
+        <div class="navigationBarMenu">
+            <div class="navMenuTitle">discovery</div>
+            <div class="navMenuSubTitle">browse</div>
+            <div class="navMenuSubTitle">explore</div>
+            <div class="navMenuTitle">connections</div>
+            <div class="navMenuSubTitle">profile</div>
+            <div class="navMenuSubTitle">people</div>
+            <div class="navMenuTitle">collections</div>
+            <div class="navMenuSubTitle">notes</div>
+            <div class="navMenuSubTitle">notebooks</div>
+        </div>
+        
+        
         <div class='createButtons'>
             <div class="navNewNote">new note</div>
             <div class="navNewNoteBook">new notebook</div>
@@ -116,45 +132,74 @@
     <div class="logInOut">Login / Signup</div>
 </div>
 
-<div class="centerColumn">
-
-        <input class="enterTitle" placeholder="New Note Title">
-        <textarea class="enterNote" placeholder="Start typing your note..."></textarea>
-                
-        <div class="noteToolBar">
-            <div class="addToNoteBook"><span class="nbAdd">Add to NoteBook(s) </span>
-                
-                <div class="noteBookSelect">
-                <span>Add to</span>
-                    <input class="searchNoteBooks" placeholder="search for notebook...">
-                        <div class="noteBookList">
-
-
-                        </div>
-                    <div class="newNoteBook">
-                        <span class="createPrompt" style="display:block;">Create new NoteBook</span>
-                        <input class="newNoteBookTitle" placeholder="enter notebook title..." style="display: none;">
-                    </div>
-
+    
+    <div class="noteDisplayArea">
+        <div class="noteDisplay" style="display:block;">
+            <div class="ndUserDetails">
+                <div class="ndUserPic"></div>
+                <div class="ndUsername">neil byrne</div>
+               
+            </div>
+            <div class="ndNoteTitle">
+                <div class="ndNoteTitleText">
+                    Title of Note
                 </div>
             </div>
-            <div class="addedToNoteBookTitle">Note will be added to the following notebooks </div>
-            <div class="addedToNoteBookList"></div>
+            <div class="ndNoteContent">Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah...</div>
+            <div class="ndNoteToolBar">
+             <div class="ndStats" style="display: none;">
+                    <div class="ndStatsViews">v: 304</div>
+                    <div class="ndStatsGrabs">g: 87</div>
+                </div>
+                <div class="ndGrabNote">grab</div>
+            </div>
         </div>
+    </div>
     
-    <div class="bottomBar">
-            <div class="dateCreated">flush</div>
-            <div class="saveButton">save</div>
-            <div class="suggestButton">suggest</div>
-<!--            <div class="grab">grab</div>-->
-        </div>
+
     
+    <div class="centerColumn noteCreation" style="display:none;">
+<!--        <div class="centerColumn">-->
+        <input class="enterTitle" placeholder="New Note Title">
+            <textarea class="enterNote" placeholder="Start typing your note..."></textarea>
+
+            <div class="noteToolBar">
+                <div class="addToNoteBook"><span class="nbAdd">Add to NoteBook(s) </span>
+
+                    <div class="noteBookSelect">
+                    <span>Add to</span>
+                        <input class="searchNoteBooks" placeholder="search for notebook...">
+                            <div class="noteBookList">
+
+
+                            </div>
+                        <div class="newNoteBook">
+                            <span class="createPrompt" style="display:block;">Create new NoteBook</span>
+                            <input class="newNoteBookTitle" placeholder="enter notebook title..." style="display: none;">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="addedToNoteBookTitle">Note will be added to the following notebooks </div>
+                <div class="addedToNoteBookList"></div>
+            </div>
+
+        <div class="bottomBar">
+                <div class="dateCreated">flush</div>
+                <div class="saveButton">save</div>
+                <div class="suggestButton">suggest</div>
+    <!--            <div class="grab">grab</div>-->
+            </div>
+<!--        </div>-->
+    </div>
+
+        
     
     
     <div class="noteBookListEntry" id = "nbeTemplate" style="display: none;">
-        					<div class="nbeSelected"></div>
-        					<div class="nbeTitle">linux</div>
-        				</div>
+        <div class="nbeSelected"></div>
+        <div class="nbeTitle">linux</div>
+    </div>
     
 <script type="text/javascript">
     $(document).ready(function () {
@@ -168,6 +213,8 @@
         getNotes();
         
         navButtons();
+        
+        noteDisplayListeners();
         
         historyButtons();
         updateButtonStatus();
