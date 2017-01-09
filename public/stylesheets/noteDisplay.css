@@ -1,0 +1,120 @@
+.noteDisplayArea{
+    position: fixed;
+    height:100%;
+    width:60%;
+    margin-left:20%;
+    margin-top: 44px;
+    background-color: #000;
+}
+.noteDisplay{
+    left: 0;
+    top: 0;
+    float: left;
+    margin: 5px;
+    width: 40%;
+    height: 140px;;
+    background-color: #aaa;
+    color: #fff;
+    cursor: pointer;
+}
+.ndUserDetails{
+    float: left;
+    width: 100%;
+    height: 20px;
+    background-color: #888;
+}
+.ndUserPic{
+    background-image:url("");
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    float: right;
+    margin:1px;
+    background-color: #999;
+}
+.ndUsername{
+    float: right;
+    margin: 3px;
+    font-weight: 100;
+    font-size: 12px;
+}
+.ndStats{
+    float: left;
+    width: 25%;
+    height: 100%;
+/*    background-color: #444;*/
+    font-size: 10px;
+    text-align: center;
+    font-weight: 100;
+    margin-top: 3px;
+}
+.ndStatsViews{
+    float: left;
+    width: 50%;
+}
+.ndStatsGrabs{
+    float: left;
+    width: 50%;
+}
+.ndNoteTitle{
+
+    float: left;
+    width: 100%;
+
+    height: 20px;
+    background-color: #444;
+}
+.ndNoteTitleText{    
+    float: left;
+    margin-left:15px;
+    margin-top:3px;
+    font-size:12px;
+    font-weight:200;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+}
+.ndNoteContent{
+/*
+    float: left;
+    width: 100%;
+*/
+    height: 80px;
+    background-color: #aaa;
+    
+    float: left;
+    margin-left:18px;
+    margin-right:18px;
+    max-width: 300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    margin-top:3px;
+    font-size:10px;
+    font-weight:lighter;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    color: #000;
+}
+.ndNoteToolBar{
+    float: left;
+    width: 100%;
+    height: 20px;
+    background-color: #444;
+}
+.ndGrabNote{
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 300;
+    cursor: pointer;
+}
