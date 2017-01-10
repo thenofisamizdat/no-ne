@@ -12,7 +12,7 @@ function noteDisplayListeners(){
 //            })
 //        }
     });
-    $('.search').live('keyup', function(){
+    $('.noteDisplaySearch').live('keyup', function(){
         noteDisplaySearchFilter = $(this).val();
         displayAllNotes();
     });
@@ -42,15 +42,15 @@ function setNoteDisplayStatus(ndStatus){
 
 function animateNoteSourceHighlight(){
     if (displayNoteFilter == "all notes"){  
-            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "15%"}, 250);  
+            $(".ndaSourceHighlight").animate({'margin-left': "15%"}, 250);  
             displayAllNotes();
         }
         else if (displayNoteFilter == "my notes"){
-            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "48%"}, 250);  
+            $(".ndaSourceHighlight").animate({'margin-left': "48%"}, 250);  
             displayAllNotes();
         }
         else if (displayNoteFilter == "grabbed notes"){
-            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "81%"}, 250);  
+            $(".ndaSourceHighlight").animate({'margin-left': "81%"}, 250);  
             displayAllNotes();
         }
 }

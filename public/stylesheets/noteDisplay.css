@@ -191,11 +191,18 @@ input[type=button], input[type=button]:hover {
 	height:50px;
 }
 .dark{
-	background: url('./images/dark_grey.jpg');
     float: right;
 }
 .dark input[type=text]{
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
 	color:#505358;
+}
+.light{
+    float: right;
+    margin-top: 5px;
+}
+.light input[type=text]{
+	border:1px solid #acb1b7;
+	background-color:#ccc;
 }

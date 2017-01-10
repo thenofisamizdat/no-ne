@@ -30,6 +30,7 @@
     <script src="javascripts/history.js"></script>
     <script src="javascripts/navigation.js"></script>
     <script src="javascripts/noteDisplay.js"></script>
+    <script src="javascripts/search.js"></script>
     
 
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -129,6 +130,9 @@
 <div class="toolbar">
     <div class="historyBack">b</div>
     <div class="historyForward">f</div>
+    <div class="light">
+    <span><input type="text" class="search rounded masterSearch" placeholder="Search..."></span>
+    </div>
     <div class="logInOut">Login / Signup</div>
 </div>
 
@@ -159,7 +163,7 @@
             <div class="ndaHeaderTitle">notes</div>
             <div class="ndaHeaderSearch"></div>
             <div class="dark">
-                <span><input type="text" class="search rounded" placeholder="Search..."></span>
+                <span><input type="text" class="search rounded noteDisplaySearch" placeholder="Search..."></span>
             </div>
         </div>
         <div class="noteDisplayArea">
@@ -236,6 +240,8 @@
         
         historyButtons();
         updateButtonStatus();
+        
+        masterSearchListener();
         
         loginListener();
         $('.signUp').hide();

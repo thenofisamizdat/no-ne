@@ -36,7 +36,7 @@ function noteToolBarControl() {
     $('.enterNote').keyup(function(e){
         if (e.keyCode == 32) {
             searchTermInUse = false;
-           // getSuggestedNotes();
+            searchForString(currentNote + " " + currentTitle);
         }
         currentNote = $('.enterNote').val();
     });
