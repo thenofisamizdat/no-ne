@@ -1,4 +1,4 @@
-var displayNoteFilter = "all";
+var displayNoteFilter = "all notes";
 var displayingNotes = [];
 var noteDisplaySearchFilter = "";
 
@@ -16,6 +16,43 @@ function noteDisplayListeners(){
         noteDisplaySearchFilter = $(this).val();
         displayAllNotes();
     });
+    $('.ndaNoteSourceText').live('click', function(){
+        displayNoteFilter = $(this).html();
+        animateNoteSourceHighlight();
+    });
+}
+
+function getNoteDisplayStatus(){
+    var ndStatus = {};
+    ndStatus.displayNoteFilter = displayNoteFilter;
+    ndStatus.displayingNotes = displayingNotes;
+    ndStatus.noteDisplaySearchFilter = noteDisplaySearchFilter;
+    
+    return ndStatus;
+}
+function setNoteDisplayStatus(ndStatus){
+    console.log("set nd")
+    console.log(ndStatus)
+    displayNoteFilter = ndStatus.displayNoteFilter;
+    displayingNotes = ndStatus.displayingNotes;
+    noteDisplaySearchFilter = ndStatus.noteDisplaySearchFilter;
+    loadNoteDisplaySection();
+    animateNoteSourceHighlight();
+}
+
+function animateNoteSourceHighlight(){
+    if (displayNoteFilter == "all notes"){  
+            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "15%"}, 250);  
+            displayAllNotes();
+        }
+        else if (displayNoteFilter == "my notes"){
+            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "48%"}, 250);  
+            displayAllNotes();
+        }
+        else if (displayNoteFilter == "grabbed notes"){
+            $(this).parent().find(".ndaSourceHighlight").animate({'margin-left': "81%"}, 250);  
+            displayAllNotes();
+        }
 }
 
 function displayAllNotes(){
@@ -29,9 +66,9 @@ function displayAllNotes(){
     for (var note in notes){
         var currentNote = notes[note];
         if (currentNote.userID == userID){
-            if (((displayNoteFilter == "mine")&&(currentNote.originID == userID))
-                || ((displayNoteFilter == "grabs")&&(currentNote.originID!=userID))
-                || (displayNoteFilter == "all")){
+            if (((displayNoteFilter == "my notes")&&(currentNote.originID == userID))
+                || ((displayNoteFilter == "grabbed notes")&&(currentNote.originID!=userID))
+                || (displayNoteFilter == "all notes")){
                 
                 if ((currentNote.noteTitle.indexOf(noteDisplaySearchFilter)>=0)
                     ||(currentNote.noteContent.indexOf(noteDisplaySearchFilter)>=0)){

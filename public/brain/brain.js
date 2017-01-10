@@ -21,7 +21,7 @@ console.log("word count should now happen fuuuuuuuuuuuuuuuuuuck")
              //       console.log(notes[storyNotes[i]]);
                     console.log("====");
 
-                    corpus += notes[storyNotes[i]].noteTitle + " ";
+                    corpus += notes[storyNotes[i]].noteTitle.split("'").join('').split('"').join('') + " ";
                     corpus += notes[storyNotes[i]].noteContent;
 
 

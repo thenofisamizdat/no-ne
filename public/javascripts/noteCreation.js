@@ -5,7 +5,7 @@ var storySearchBox = "";
 var currentTitle = "";
 var currentNote = "";
 
-function getNoteToolBarStatus(){
+function getNoteCreationStatus(){
     var ntbStatus = {};
     ntbStatus.selectedStories = selectedStories;
     ntbStatus.storySearchBox = storySearchBox;
@@ -17,8 +17,7 @@ function getNoteToolBarStatus(){
     return false;
 }
 
-function setNoteToolBarStatus(ntbStatus){
-    console.log(ntbStatus)
+function setNoteCreationStatus(ntbStatus){
     selectedStories = ntbStatus.selectedStories;
     storySearchBox = ntbStatus.storySearchBox;
     createStoryButtonPressed = ntbStatus.createStoryButtonPressed;
@@ -143,7 +142,7 @@ function createnewNote(){
         noteTitle: currentTitle,
         noteContent: currentNote,
         noteID: noteid,
-        originID: noteid,
+        originID: userID,
         noteBooks: returnSelectedStoryString(noteid),
         views: 0,
         grabs: 0

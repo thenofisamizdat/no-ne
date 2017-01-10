@@ -34,29 +34,65 @@ var historyButtons = function(){
 };
 
 function updateActionScreen(){
-    if (historyHolder[historyPosition].screenState == "createNote"){    setNoteToolBarStatus(historyHolder[historyPosition].screenDetails);
+    if (historyHolder[historyPosition].screenState == "createNote"){  
+        screenState = "createNote";
+        loadNoteCreateSection();
+        setNoteCreationStatus(historyHolder[historyPosition].screenDetails); 
+    }
+    else if (historyHolder[historyPosition].screenState == "displayNotes"){ 
+        screenState = "displayNotes";
+        setNoteDisplayStatus(historyHolder[historyPosition].screenDetails);
     }
 }
 
 var addToHistory = function(fromHistoryBar){
+    console.log(screenState + "<- screen state -> " + historyPosition)
     if (screenState == "createNote"){
-     //   console.log(getNoteToolBarStatus())
-        if (getNoteToolBarStatus() ){
-            var snapshot = {screenState: screenState, screenDetails: getNoteToolBarStatus()};
+        
+        if (getNoteCreationStatus() ){
+            var snapshot = {screenState: screenState, screenDetails: getNoteCreationStatus()};
             if (historyHash[JSON.stringify(snapshot)] != 1){
-          //      console.log(fromHistoryBar)
                 historyHolder.push(snapshot);
                 if (!fromHistoryBar) historyPosition = historyHolder.length;
                 updateButtonStatus();
                 historyHash[JSON.stringify(snapshot)] = 1;    
-                console.log("returning true")
+                console.log("----history----")
+                console.log(screenState + "<- post screen state -> " + historyPosition)
+                console.log(historyHolder)
                 return true;
             }
-            console.log("returning false")
-            return false;
-            
+            return false; 
         }
+//        if (!fromHistoryBar){ 
+//                console.log("----history2----")
+//                console.log(historyHolder)
+//                historyPosition = historyHolder.length;
+//                console.log(screenState + "<- post screen state -> " + historyPosition)
+//                updateButtonStatus();
+//            }
+    }
+    else if (screenState == "displayNotes"){
+        var snapshot = {screenState: screenState, screenDetails: getNoteDisplayStatus()};
         
+            if (historyHash[JSON.stringify(snapshot)] != 1){
+                historyHolder.push(snapshot);
+                if (!fromHistoryBar) historyPosition = historyHolder.length;
+                updateButtonStatus();
+                historyHash[JSON.stringify(snapshot)] = 1;    
+                console.log("----history3----")
+                console.log(screenState + "<- post screen state -> " + historyPosition)
+                console.log(historyHolder)
+                return true;
+            }
+        if (!fromHistoryBar) {
+            console.log("----history4----")
+                console.log(historyHolder)
+            historyPosition = historyHolder.length;
+            console.log(screenState + "<- post screen state -> " + historyPosition)
+            updateButtonStatus();    
+            return true;
+        }
+            return false; 
     }
 };
 

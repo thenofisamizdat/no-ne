@@ -5,6 +5,7 @@ function getNotes() {
       for (var word in data) {
           try{
              var note = JSON.parse(data[word]);
+              note.noteID = note.noteID.split("'").join('').split('"').join('');
                 notes[note.noteID] = note;
           }
         catch(e){}
@@ -33,8 +34,9 @@ function getNoteBooks() {
         stories = [];
       for (var word in data) {
           try{
-                var story = JSON.parse(data[word]);
-                stories[story.storyID] = story;
+              var story = JSON.parse(data[word]);
+              story.storyID = story.storyID.split("'").join('').split('"').join('');
+              stories[story.storyID] = story;
                 if (story.userID == userID) userStories[story.storyTitle] = story.storyID;
           }
         catch(e){

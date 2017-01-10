@@ -1,22 +1,29 @@
 function navButtons(){
     $('.navNewNote').live('click', function(){
-        $('.actionArea').hide();
-        $('.noteCreation').show();
         addToHistory(false);
-        resetNoteState();
-        screenState = "createNote";
+        loadNoteCreateSection();
     });
     $('.navMenuSubTitle').live('click', function(){
-        if ($(this).html() == "notes") loadNoteDisplaySection();
+        if ($(this).html() == "notes") {
+            addToHistory(false);
+            loadNoteDisplaySection();
+        }
     })
 };
 
+function loadNoteCreateSection(){
+    $('.actionArea').hide();
+    $('.noteCreation').show();
+    resetNoteState();
+    screenState = "createNote";
+}
+
 function loadNoteDisplaySection(){
     console.log("view notes")
-    addToHistory(false);
+    
     screenState = "displayNotes";
     $('.actionArea').hide();
-    $('.noteDisplayArea').show();
+    $('.notesActionArea').show();
     displayAllNotes();
     
 }
