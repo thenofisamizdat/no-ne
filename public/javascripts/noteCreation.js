@@ -142,7 +142,8 @@ function createnewNote(){
         noteTitle: currentTitle,
         noteContent: currentNote,
         noteID: noteid,
-        originID: userID,
+        originID: noteid,
+        users: [userID],
         noteBooks: returnSelectedStoryString(noteid),
         views: 0,
         grabs: 0

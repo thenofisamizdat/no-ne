@@ -58,6 +58,14 @@
     border-bottom: 2px solid black;
     margin-left: 15%;
 }
+.ndaToolBarSourceHighlight{
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-left: 5px;
+}
 .ndUserDetails{
     float: left;
     width: 100%;
@@ -146,10 +154,27 @@
     color: #000;
 }
 .ndNoteToolBar{
-    float: left;
+    bottom: 20px;;
+    position: absolute;
     width: 100%;
     height: 20px;
     background-color: #555;
+}
+.ndNoteToolDisplayBar{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #222;
+}
+.ndTool{
+    float: left;
+    margin: 3px;
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
 }
 .ndGrabNote{
     float: right;

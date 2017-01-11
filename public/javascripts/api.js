@@ -112,3 +112,19 @@ function updateCorpus(){
     });
 }
 
+var getProfilePic = function(uid){
+	/* make the API call */
+	FB.api(
+		"/"+uid+"/picture",
+		function (response) {
+			console.log(response["data"].url)
+			if (response && !response.error) {
+				/* handle the result */
+				console.log("here")
+				$('.profilePic').css("background-image", "url("+response["data"].url+")");
+			}
+		}
+	);
+};
+
+

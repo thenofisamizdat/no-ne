@@ -29,6 +29,16 @@ function noteDisplayListeners(){
         displayNoteFilter = $(this).html();
         animateNoteSourceHighlight();
     });
+    $('.ndTool').live('click', function(){
+        var pos = "";
+        var but = $(this).html();
+        console.log(but)
+        if (but == "a") { pos = "6px"; ndtbDisplayNoteStats();}
+        else if (but == "p") { pos = "25px"; ndtbDisplayNoteUsers(); }
+        else if (but == "n") { pos = "46px"; ndtbDisplayNoteNotebooks(); }
+        else if (but == "s") { pos = "65px"; ndtbDisplayNoteShare(); }
+        $(".ndaToolBarSourceHighlight").animate({'margin-left': pos}, 250);  
+    });
 }
 
 function getNoteDisplayStatus(){
@@ -77,7 +87,7 @@ function displayAllNotes(){
         var currentNote = notes[note];
         if (currentNote.userID == userID){
             if (((displayNoteFilter == "my notes")&&(currentNote.originID == userID))
-                || ((displayNoteFilter == "grabbed notes")&&(currentNote.originID!=userID))
+                || ((displayNoteFilter == "grabbed notes")&&(currentNote.originID != (userID + "_" + currentNote.noteTitle)))
                 || (displayNoteFilter == "all notes")){
                 
                 if ((currentNote.noteTitle.indexOf(noteDisplaySearchFilter)>=0)

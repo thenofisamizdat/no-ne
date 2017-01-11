@@ -30,6 +30,7 @@
     <script src="javascripts/history.js"></script>
     <script src="javascripts/navigation.js"></script>
     <script src="javascripts/noteDisplay.js"></script>
+    <script src="javascripts/noteDisplayToolBar.js"></script>
     <script src="javascripts/search.js"></script>
     
 
@@ -97,8 +98,8 @@
      			<div class="signUpLine"></div>
      			<div class="signUpLine">SIGN IN</div>
      			<div class="signUpLine"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="loginUsername" style="width: 62%;margin-left:5%;"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="loginPassword" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="loginUsername blockInput" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="loginPassword blockInput" style="width: 62%;margin-left:5%;"></div>
      			<div class="signUpLine"></div>
      			<div class="signUpLine"></div>
      			<div class="signUpLine"></div>
@@ -110,15 +111,22 @@
      			<div class="signUpLine"></div>
      			<div class="signUpLine">REGISTER</div>
      			<div class="signUpLine"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">name:</div><input class="regName" style="width: 62%;margin-left:5%;"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="regUsername" style="width: 62%;margin-left:5%;"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">email:</div><input class="regEmail" style="width: 62%;margin-left:5%;"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="regPass" style="width: 62%;margin-left:5%;"></div>
-     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">confirm:</div><input type="password" class="regConfirm" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">name:</div><input class="regName blockInput" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">username:</div><input class="regUsername blockInput" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">email:</div><input class="regEmail blockInput" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">password:</div><input type="password" class="regPass blockInput" style="width: 62%;margin-left:5%;"></div>
+     			<div class="signUpLine"><div class="blockTitle" style="width: 30%;">confirm:</div><input type="password" class="regConfirm blockInput" style="width: 62%;margin-left:5%;"></div>
      			<div class="signUpLine"></div>
      			<div class="signUpLine RegisterButton" style="background-color: #000; color: #fff; cursor: pointer;">Register</div>
      		</div>
+            <div class = "facebookConnectArea">
+                <div class="fbloginbutton">
+                    <fb:login-button  data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
+                </div>
+            </div>
      	</div>
+    
 
 <div class="bottomToolbar">
 	<div class="bottomBarButton"></div>
@@ -134,6 +142,10 @@
     <span><input type="text" class="search rounded masterSearch" placeholder="Search..."></span>
     </div>
     <div class="logInOut">Login / Signup</div>
+    <div class="profilePic prof"></div>
+    <div class="profileName prof">
+
+    </div>
 </div>
 
     <div class="noteDisplay" id="noteDisplayTemplate" style="display:none;">
@@ -158,9 +170,9 @@
         </div>
     
     
-    <div class="notesActionArea nda actionArea" style="display:none;">
-        <div class="ndaNoteDisplayOverlay ndaLarge" style="display:none;"></div>
-        <div class="ndaLargeNoteDisplay ndaLarge" style="display:none;">
+    <div class="notesActionArea nda actionArea" style="display:block;">
+        <div class="ndaNoteDisplayOverlay ndaLarge" style="display:block;"></div>
+        <div class="ndaLargeNoteDisplay ndaLarge" style="display:block;">
             <div class="ndUserDetails">
                 <div class="ndUserPic"></div>
                 <div class="ndUsername">neil byrne</div>
@@ -173,11 +185,18 @@
             </div>
             <div class="ndNoteContent ndaLargeContent">Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah...</div>
             <div class="ndNoteToolBar">
-             <div class="ndStats" style="display: none;">
+                <div class="ndTool ndStatsTool">a</div>
+                <div class="ndTool ndPeopleTool">p</div>
+                <div class="ndTool ndNotebookTool">n</div>
+                <div class="ndTool ndShareTool">s</div>
+                <div class="ndaToolBarSourceHighlight"></div>
+                <div class="ndGrabNote">grab</div>
+            </div>
+            <div class="ndNoteToolDisplayBar">
+                <div class="ndStats" style="display: none;">
                     <div class="ndStatsViews">v: 304</div>
                     <div class="ndStatsGrabs">g: 87</div>
                 </div>
-                <div class="ndGrabNote">grab</div>
             </div>
         </div>
         <div class="noteDisplayAreaHeader nda">
@@ -265,16 +284,90 @@
         masterSearchListener();
         
         loginListener();
-        $('.signUp').hide();
-       $('.signUpBG').hide();
+       // $('.signUp').hide();
+       //$('.signUpBG').hide();
         if (loggedIn){
     	$('.logInOut').html ("Log Out");
     }
     else{
     	$('.logInOut').html ("Login / Signup");
+        $('.prof').hide();
     }
 
     });
+</script>
+    
+    <!-- FACEBOOK LOGIN CODE -->
+    <div id="dataUrlcontainer" hidden></div>
+
+<script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            $('.fbloginbutton').hide();
+            testAPI();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                    'into Facebook.';
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+        console.log('Welcome!  Fetching your information.... ' );
+        FB.api('/me', function(response) {
+            $('.logReg').hide();
+            $('.logInOut').hide();
+            $('.prof').show();
+            console.log(response);
+            $('.profileName').html(response.name);
+            userID = response.id;
+//            getUserNotes({searchType:"userSearch", searchQuery:"", noteId:0, uid:uid});
+//            getGrabCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserGrabs"});
+//            getViewCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserViews"});
+//            getSuggestions({searchType:"noteSearch", searchQuery:currentNote, noteId:currentNoteId, uid:uid});
+            getProfilePic(userID);
+        });
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '331461283908866',
+            xfbml      : true,
+            version    : 'v2.7'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 
 </body>

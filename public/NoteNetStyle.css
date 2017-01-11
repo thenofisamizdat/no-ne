@@ -32,8 +32,10 @@ html, body{
 	background-color: #444;
 	opacity: .8;
 	position: fixed;
-	width: 100%;
-	height: 100%;
+	width: 105%;
+	height: 105%;
+    left: -50px;
+    top: -50px;
 }
 .signUp{
 	z-index: 100;
@@ -46,22 +48,52 @@ html, body{
 	width: 50%;
 	height: 50%;
 }
+.blockTitle{
+    float: left;
+}
+.blockInput{
+    float: left;
+}
+.facebookConnectArea{
+     float: left;
+    width: 125px;
+    margin-top: 5%;
+    height: 40px;
+    margin-left: -6.5%;
+/*
+        background: linear-gradient(#4c69ba, #3b55a0);
+    border-color: #4c69ba;
+*/
+    border-radius: 2px;
+}
+.fb_iframe_widget iframe {
+    opacity: 1;
+}
+
+.fb_iframe_widget {
+  background-image: url(another-button.png);
+  background-repeat: no-repeat; 
+}
+
 .signUpLeft{
 	width: 44.5%;
-	height: 90%;
+	height: 60%;
+    margin-top: 4%;
 	float: left;
 	margin-left: 5%;
 }
 .signUpMid{
 	width: .25%;
-	height: 90%;
-	margin-top: 2.5%;
+	height: 60%;
+    margin-top: 5%;
+    opacity: .6;
 	float: left;
 	background-color: #444;
 }
 .signUpRight{
 	width: 44.5%;
-	height: 90%;
+	height: 60%;
+    margin-top: 4%;
 	float: left;
 	margin-left: 5%;
 }

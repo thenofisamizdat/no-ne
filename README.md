@@ -1,4 +1,4 @@
-# compose-redis-helloworld-nodejs overview
+# no-ne overview
 
 compose-redis-helloworld-nodejs is a sample Bluemix application which shows you how to connect to an IBM Compose for Redis for Bluemix service using Node.js.
 
