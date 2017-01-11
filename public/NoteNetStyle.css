@@ -80,6 +80,7 @@ html, body{
     color: #000;
     height:44px;
     border-bottom: 1px solid #aaa;
+    z-index: 2;
 }
 .logInOut{
 	float: right;

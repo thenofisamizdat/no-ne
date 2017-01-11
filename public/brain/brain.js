@@ -5,7 +5,7 @@ console.log("word count should now happen fuuuuuuuuuuuuuuuuuuck")
     bm = new BM25();
     for (var story in stories){
   
-      //  console.log(story)
+        console.log(story)
         try{
             var currentStory = stories[story];
             console.log(currentStory.userID)
@@ -18,11 +18,12 @@ console.log("word count should now happen fuuuuuuuuuuuuuuuuuuck")
                 var corpus = "";
                 var storyNotes = currentStory.notes;
                 for (var i = 0; i < storyNotes.length; i++){
-             //       console.log(notes[storyNotes[i]]);
+                   console.log(storyNotes[i]);
                     console.log("====");
+                    console.log(notes[storyNotes[i].split("'").join('').split('"').join('')].noteTitle);
 
-                    corpus += notes[storyNotes[i]].noteTitle.split("'").join('').split('"').join('') + " ";
-                    corpus += notes[storyNotes[i]].noteContent;
+                    corpus += notes[storyNotes[i].split("'").join('').split('"').join('')].noteTitle + " ";
+                    corpus += notes[storyNotes[i].split("'").join('').split('"').join('')].noteContent;
 
 
                 }
@@ -49,7 +50,7 @@ console.log("word count should now happen fuuuuuuuuuuuuuuuuuuck")
 
 var searchForString = function (searchTerm){
     //if ((networkSource && (currentStory.userID != userID))||(!networkSource && (currentStory.userID == userID))){
-     suggestedNetworkNoteBookContainer = bm.search(searchTerm)   
+     suggestedNetworkNoteBookContainer = bm.search(searchTerm);   
     
      buildSuggestionList();
 }

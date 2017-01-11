@@ -5,6 +5,7 @@
     background-color: #fff;
     top: 0;
     left: 0%;
+    z-index: 2;
 }
 .navigationBarMenu {
     width: 100%;

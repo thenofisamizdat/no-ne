@@ -4,6 +4,12 @@ var noteDisplaySearchFilter = "";
 
 function noteDisplayListeners(){
     $('.noteDisplay').live('click', function(){
+        console.log($(this).data())
+        console.log(displayingNotes)
+        $('.ndaLarge').show();
+        var selectedNote = notes[$(this).data("noteID")];
+        $('.ndaLargeTitle').html(selectedNote.noteTitle);
+        $('.ndaLargeContent').html(selectedNote.noteContent);
 //        if (!$(this).data("expanded")){
 //            $(this).css({
 //                "width": "80%",
@@ -11,6 +17,9 @@ function noteDisplayListeners(){
 //                "position": "absolute"
 //            })
 //        }
+    });
+    $('.ndaNoteDisplayOverlay').live('click', function(){
+        $('.ndaLarge').hide();    
     });
     $('.noteDisplaySearch').live('keyup', function(){
         noteDisplaySearchFilter = $(this).val();
@@ -31,11 +40,12 @@ function getNoteDisplayStatus(){
     return ndStatus;
 }
 function setNoteDisplayStatus(ndStatus){
-    console.log("set nd")
-    console.log(ndStatus)
+//    console.log("set nd")
+//    console.log(ndStatus)
     displayNoteFilter = ndStatus.displayNoteFilter;
     displayingNotes = ndStatus.displayingNotes;
     noteDisplaySearchFilter = ndStatus.noteDisplaySearchFilter;
+    $('.noteDisplaySearch').val(noteDisplaySearchFilter);
     loadNoteDisplaySection();
     animateNoteSourceHighlight();
 }
@@ -56,10 +66,10 @@ function animateNoteSourceHighlight(){
 }
 
 function displayAllNotes(){
-    console.log ("**********NOTES********")
-    console.log(notes)
-    
-    
+//    console.log ("**********NOTES********")
+//    console.log(notes)
+//    
+//    
     $('.noteDisplayArea').empty();
     displayingNotes = [];
     
@@ -75,7 +85,7 @@ function displayAllNotes(){
                     displayingNotes.push(currentNote);
                 
                     var noteTemplate = $('#noteDisplayTemplate').clone();
-                    console.log("constructing note " + notes[note].noteTitle)
+//                    console.log("constructing note " + notes[note].noteTitle)
                     var noteID = notes[note].noteID.split(' ').join('');
                     noteTemplate.attr("id", noteID);
                     noteTemplate.data("noteID", notes[note].noteID);

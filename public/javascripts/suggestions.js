@@ -38,6 +38,7 @@ var connectBarListener = function(){
         ntbStatus.createStoryButtonPressed = false;
         ntbStatus.currentTitle = notes[this.id].noteTitle;
         ntbStatus.currentNote = notes[this.id].noteContent; 
+        loadNoteCreateSection();
         setNoteCreationStatus(ntbStatus);
     })
 };
@@ -52,7 +53,7 @@ var buildSuggestionList = function (){
             || (!networkSource && stories[suggestedObject['id']].userID == userID)){
                 var suggestion = "<div class='suggestion'><div class='suggestionNoteBook'>"+stories[suggestedObject['id']].storyTitle+"<div class='expand'></div></div>";
                     for (var j = 0; j < stories[suggestedObject['id']].notes.length; j++){
-                        var noteID = stories[suggestedObject['id']].notes[j]
+                        var noteID = stories[suggestedObject['id']].notes[j].split('"').join('').split("'").join('');
                         suggestion += "<div class='suggestionNote' id='"+noteID+"'>"+ notes[noteID].noteTitle + "</div>"
                     }
                 suggestion += "</div>"

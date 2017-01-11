@@ -5,13 +5,14 @@
     margin-top: 60px;
     height: 100%;
     background-color: #444;
+    z-index: 1;
 }
 .noteDisplayArea{
     float: left;
     overflow-y: scroll;
     height:70%;
     width:100%;
-        margin-top: 30px;
+    margin-top: 30px;
 }
 .noteDisplayAreaHeader{
     float: left;
@@ -157,6 +158,26 @@
     font-weight: 300;
     cursor: pointer;
 }
+/* Large note display*/
+.ndaNoteDisplayOverlay{
+    position: absolute;
+    width: 103%;
+    height: 100%;
+    margin-top: -30px;
+    background-color: black;
+    opacity: .8;
+    margin-left: -13px;
+}
+.ndaLargeNoteDisplay{
+    width: 80%;
+    position: absolute;
+    height: 65%;
+    margin-left: 10%;
+    margin-top: 5%;
+    background-color: #fff;
+    z-index: 3;
+}
+
 /*SEARCH BOX */
 
 .search { 
