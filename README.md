@@ -1,7 +1,7 @@
 # Overview "no-ne"
 
-"no-ne" is a Bluemix application that uses a Node.js server to communicate between a REDIS JSON documents store database, and a html5/jquery/javascript client. 
-User authentication is handled using Facebook oAuth.
+"no-ne" is a Bluemix application that uses a Node.js server to communicate between a REDIS JSON document-store database, and a html5/jquery/javascript client. 
+User authentication is handled using Facebook OAuth 2.0.
 
 ## Code Structure
 
