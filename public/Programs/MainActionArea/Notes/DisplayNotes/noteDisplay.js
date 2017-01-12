@@ -86,7 +86,7 @@ function displayAllNotes(){
     for (var note in notes){
         var currentNote = notes[note];
         if (currentNote.userID == userID){
-            if (((displayNoteFilter == "my notes")&&(currentNote.originID == userID))
+            if (((displayNoteFilter == "my notes")&&(currentNote.originID == (userID + "_" + currentNote.noteTitle))
                 || ((displayNoteFilter == "grabbed notes")&&(currentNote.originID != (userID + "_" + currentNote.noteTitle)))
                 || (displayNoteFilter == "all notes")){
                 

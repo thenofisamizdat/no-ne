@@ -227,7 +227,8 @@ function returnSelectedStoryString(noteid){
 
 function populateNote(){
     $('.enterTitle').val(currentTitle);
-    $('.enterNote').val(currentNote);
+    $('.enterNote').html(currentNote);
+    placeCaretAtEnd(document.getElementById("nc"));
 };
 
 function populateNoteBookAddedList(){
@@ -292,7 +293,7 @@ function resetNoteState(){
     $('.newNotebookTitle').val("");
     $('.searchNoteBooks').val("");
     $('.enterTitle').val("");
-    $('.enterNote').val("");
+    $('.enterNote').html("");
     $('.addedToNoteBookList').empty();
-    
+    placeCaretAtEnd(document.getElementById("nc"));
 }

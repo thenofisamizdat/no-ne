@@ -113,18 +113,22 @@ function updateCorpus(){
 }
 
 function getLinkPreview(link){
-
+console.log ("linking -> " + link)
     $.ajax({
         url: "https://api.linkpreview.net",
         dataType: 'jsonp',
         data: {q: link, key: "587793b24a9e735c6cd649a4462a97226296b44dc6b8d"},
         success: function (response) {
             //return response;
-            var responseID = response.title.split(' ').join('').split('"').join('').split("'").join('').split('&').join('').split(':').join('').split(';').join('').split('!').join('');
+            var responseID = response.title.split(' ').join('').split('"').join('').split("'").join('').split('&').join('').split(':').join('').split(';').join('').split('!').join('').split('?').join('');
             var responseHTML = "<br><div class='previewHolder'><div class='previewTitle'>"+response.title+"</div><div class='previewImage "+responseID+"'></div><div class='previewDescription'>"+response.description+"</div><div class='previewLink'>"+urlify(link)+"</div></div><br>&nbsp";
             $('.enterNote').append(responseHTML);
             responseID = "." + responseID;
-            $(responseID).css({"background-image": "url('"+response.image+"')"});
+            try{
+                $(responseID).css({"background-image": "url('"+response.image+"')"});
+                
+            }
+            catch(e){}
             
             urlifiedLinks.push(link);
             $('.busyGraphic').hide();
