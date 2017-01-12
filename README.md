@@ -39,7 +39,7 @@ User authentication is handled using Facebook OAuth 2.0.
   $ cf push
   ```
 
-Now when you visit `no-ne.eu-gb.mybluemix.net/` you can login via facebook. Once logged in the app connects via Node.js API endpoints to the REDIS database and the client is ready for use.
+Now when you visit `no-ne.eu-gb.mybluemix.net/` you are at the application's entry point. Once logged in through facebook, the app connects via Node.js API endpoints to the REDIS database and the client is ready for use.
 
 
 ## Binding a Bluemix service to the app
