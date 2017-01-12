@@ -32,23 +32,33 @@ User authentication is handled using Facebook OAuth 2.0.
   $ cf api https://api.ng.bluemix.net
   $ cf login
   ```
-
-5. Create the Compose for Redis service in Bluemix if you haven't already done so.
-
-  ```
-  $ cf create-service compose-for-redis Standard my-compose-for-redis-service
-  ```
-
-8. Bind the service to the application.
-
-  ```
-  $ cf bind-service no-ne my-compose-for-redis-service
-  ```
   
-9. Push the app to Bluemix.
+5. Push the app to Bluemix.
 
   ```
   $ cf push
   ```
 
 Now when you visit `no-ne.eu-gb.mybluemix.net/` you can login via facebook. Once logged in the app connects via Node.js API endpoints to the REDIS database and the client is ready for use.
+
+
+## Binding a Bluemix service to the app
+
+1. Create, for instance, the Compose for Redis service in Bluemix.
+
+  ```
+  $ cf create-service compose-for-redis Standard my-compose-for-redis-service
+  ```
+
+2. Bind the service to the application.
+
+  ```
+  $ cf bind-service no-ne my-compose-for-redis-service
+  ```
+  
+3. Restart the application
+
+  ```
+  $ cf restart no-ne
+  ```
+  
