@@ -33,11 +33,6 @@ function urlify(text) {
     return text.replace(urlRegex, function(url) {
         return '<a href="' + url + '">' + url + '</a>';
     })
-    // or alternatively
-    // return text.replace(urlRegex, '<a href="$1">$1</a>')
-}
-function reverse(s){
-    return s.split("").reverse().join("");
 }
 
 function generateLink(s)
@@ -45,11 +40,13 @@ function generateLink(s)
     var tokens = s.split(' ');
     var lastToken = tokens[tokens.length-1];
     if (lastToken.indexOf('http')>=0){
+        $('.busyGraphic').show();
+        document.getElementById('nc').contentEditable = false;
         var lastTokenUrl = urlify(lastToken);
-        tokens[tokens.length-1] = lastTokenUrl;
+        tokens.pop();
         currentNote = tokens.join(' ');
         $('.enterNote').html(currentNote);
-        placeCaretAtEnd(document.getElementById("nc"));
+        //placeCaretAtEnd(document.getElementById("nc"));
         getLinkPreview(lastToken);
     }
 }
@@ -77,22 +74,14 @@ function noteToolBarControl() {
         currentTitle = $('.enterTitle').val();
     });
     $('.enterNote').keyup(function(e){
-        if (e.keyCode == 32) {
-            searchTermInUse = false;
-            searchForString(currentNote + " " + currentTitle);
-            generateLink(currentNote.split('&nbsp;').join(' '));
-//
-//            if (lastToken.indexOf("http")>=0) {
-//                if(urlifiedLinks.indexOf(lastToken)<0){
-//                    console.log(url)
-//                    $('.enterNote').html(urlify(currentNote));
-//                    getLinkPreview(lastToken);
-//                }                
-//            }
-//            console.log(lastToken + "what___")
-           // $('.enterNote').html(currentNote);
+        if (!$('.busyGraphic').is(":visible")){
+            if (e.keyCode == 32) {
+                searchTermInUse = false;
+                searchForString(currentNote + " " + currentTitle);
+                generateLink(currentNote.split('&nbsp;').join(' '));
+            }
+            currentNote = $('.enterNote').html();
         }
-        currentNote = $('.enterNote').html();
     });
 	
 	$('.newNoteBook').live('click', function(){
