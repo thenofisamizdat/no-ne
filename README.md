@@ -1,33 +1,28 @@
 # no-ne overview
 
-compose-redis-helloworld-nodejs is a sample Bluemix application which shows you how to connect to an IBM Compose for Redis for Bluemix service using Node.js.
+"no-ne" is a Bluemix application that uses a Node.js server to communicate between a REDIS JSON documents store database, and a html5/jquery/javascript client. 
+User authentication is handled using Facebook oAuth.
 
 ## Running the app on Bluemix
 
-1. If you do not already have a Bluemix account, [sign up here][bluemix_signup_url]
+1. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
 
-2. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
-
-3. Clone the app to your local environment from your terminal using the following command:
+2. Clone the app to your local environment from your terminal using the following command:
 
   ```
-  git clone https://github.com/IBM-Bluemix/compose-redis-helloworld-nodejs.git
+  git clone https://github.com/thenofisamizdat/no-ne.git
   ```
 
-4. `cd` into this newly created directory
+3. `cd` into this newly created directory
 
-5. Open the `manifest.yml` file and change the `host` value to something unique. The host you choose will determinate the subdomain of your application's URL:  `<host>.mybluemix.net`
-
-6. Connect to Bluemix in the command line tool and follow the prompts to log in.
+4. Connect to Bluemix in the command line tool and follow the prompts to log in.
 
   ```
   $ cf api https://api.ng.bluemix.net
   $ cf login
   ```
 
-7. Create the Compose for Redis service in Bluemix if you haven't already done so.
-
-  **Note :** The Compose for Redis service does not offer a free plan. For details of pricing, see the _Pricing Plans_ section of the [Compose for Redis service][compose_for_redis_url] in Bluemix.
+5. Create the Compose for Redis service in Bluemix if you haven't already done so.
 
   ```
   $ cf create-service compose-for-redis Standard my-compose-for-redis-service
@@ -36,7 +31,7 @@ compose-redis-helloworld-nodejs is a sample Bluemix application which shows you 
 8. Bind the service to the application.
 
   ```
-  $ cf bind-service compose-redis-helloworld-nodejs my-compose-for-redis-service
+  $ cf bind-service no-ne my-compose-for-redis-service
   ```
   
 9. Push the app to Bluemix.
@@ -45,40 +40,16 @@ compose-redis-helloworld-nodejs is a sample Bluemix application which shows you 
   $ cf push
   ```
 
-Now when you visit `<host>.mybluemix.net/` you will be able to view the contents of your Redis database.
+Now when you visit `no-ne.eu-gb.mybluemix.net/` you can login via facebook. Once logged in the app connects via Node.js API endpoints to the REDIS database and the client is ready for use.
 
 ## Code Structure
 
 | File | Description |
 | ---- | ----------- |
-|[**server.js**](server.js)|Establishes a connection to the database using credentials from VCAP_ENV and handles create and read operations on the database. |
-|[**main.js**](public/javascripts/main.js)|Handles user input for a PUT command and parses the results of a GET command to output the contents of the database.|
+|[**server.js**](server.js)|Establishes a connection to the database using credentials from VCAP_ENV and handles create, update and read operations on the database. |
+|[**index.html**](public/index.html)|This is the application hub. All .css design files and .js javascript programs connect here. This file also contains all markup and is the user entry point to the application.|
 
-The app uses a PUT and a GET operation:
+|[**Program Folder**](public/Programs/)| This contains every javascript program that runs on the client side. For ease, programs are divided by the screen area in which they operate. (e.g- left navigation bar program is found in folder LeftBar, etc.)|
 
-- PUT
-  - takes user input from [main.js](public/javascript/main.js)
-  - uses the `client.hset()` method to add the user input to the _words_ hash
+|[**Design Folder**](public/Designs/)| As with the Programs folder, Designs contains every css stylesheet used to determine the look and feel of the client application. Again, designs are separated by the screen area which they style. (e.g- left navigation bar style is found in folder LeftBarStyles, etc.)|
 
-- GET
-  - uses `client.hgetall()` method to retrieve the contents of the _words_ hash
-  - returns the response of the database command to [main.js](public/javascript/main.js)
-
-
-## Privacy Notice
-The sample web application includes code to track deployments to Bluemix and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/cloudant-labs/deployment-tracker) service on each deployment:
-
-* Application Name (application_name)
-* Space ID (space_id)
-* Application Version (application_version)
-* Application URIs (application_uris)
-
-This data is collected from the VCAP_APPLICATION environment variable in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
-
-### Disabling Deployment Tracking
-
-Deployment tracking can be disabled by removing `require("cf-deployment-tracker-client").track();` from the beginning of the `server.js` file.
-
-[compose_for_redis_url]: https://console.ng.bluemix.net/catalog/services/compose-for-redis/
-[bluemix_signup_url]: https://ibm.biz/compose-for-redis-signup
-[cloud_foundry_url]: https://github.com/cloudfoundry/cli
