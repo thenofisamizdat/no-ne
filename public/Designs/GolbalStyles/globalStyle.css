@@ -181,13 +181,15 @@ html, body{
     background-size: cover;
     float: right;
     margin:5px;
+    cursor: pointer;
 }
 .profileName{
     float: right;
     margin:5px;
     margin-top: 10px;
-    margin-right: 20px;
+    margin-right: 5px;
     font-size: 14px;
+    cursor: pointer;
 }
 .leftHeader{
     margin:10px;
