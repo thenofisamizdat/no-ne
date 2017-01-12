@@ -246,7 +246,7 @@
     <div class="centerColumn noteCreation actionArea" style="display:none;">
 <!--        <div class="centerColumn">-->
         <input class="enterTitle" placeholder="New Note Title">
-            <textarea class="enterNote" placeholder="Start typing your note..."></textarea>
+            <div contentEditable="true" id="nc" class="enterNote" placeholder="Start typing your note..."></div>
 
             <div class="noteToolBar">
                 <div class="addToNoteBook"><span class="nbAdd">Add to NoteBook(s) </span>
@@ -368,6 +368,7 @@
             console.log(response);
             $('.profileName').html(response.name);
             userID = response.id;
+            getNoteBooks();
 //            getUserNotes({searchType:"userSearch", searchQuery:"", noteId:0, uid:uid});
 //            getGrabCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserGrabs"});
 //            getViewCount({uid:uid, createdBy:uid, noteId:0, countType:"getUserViews"});

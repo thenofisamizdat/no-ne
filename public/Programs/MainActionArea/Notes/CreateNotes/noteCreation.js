@@ -28,6 +28,49 @@ function setNoteCreationStatus(ntbStatus){
     populateNote();
 }
 
+function urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    })
+    // or alternatively
+    // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
+function reverse(s){
+    return s.split("").reverse().join("");
+}
+
+function generateLink(s)
+{
+    var tokens = s.split(' ');
+    var lastToken = tokens[tokens.length-1];
+    if (lastToken.indexOf('http')>=0){
+        var lastTokenUrl = urlify(lastToken);
+        tokens[tokens.length-1] = lastTokenUrl;
+        currentNote = tokens.join(' ');
+        $('.enterNote').html(currentNote);
+        placeCaretAtEnd(document.getElementById("nc"));
+        getLinkPreview(lastToken);
+    }
+}
+function placeCaretAtEnd(el) {
+    el.focus();
+    if (typeof window.getSelection != "undefined"
+            && typeof document.createRange != "undefined") {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (typeof document.body.createTextRange != "undefined") {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.collapse(false);
+        textRange.select();
+    }
+}
+var urlifiedLinks = [];
 function noteToolBarControl() {
     
     $('.enterTitle').keyup(function(){
@@ -37,8 +80,19 @@ function noteToolBarControl() {
         if (e.keyCode == 32) {
             searchTermInUse = false;
             searchForString(currentNote + " " + currentTitle);
+            generateLink(currentNote.split('&nbsp;').join(' '));
+//
+//            if (lastToken.indexOf("http")>=0) {
+//                if(urlifiedLinks.indexOf(lastToken)<0){
+//                    console.log(url)
+//                    $('.enterNote').html(urlify(currentNote));
+//                    getLinkPreview(lastToken);
+//                }                
+//            }
+//            console.log(lastToken + "what___")
+           // $('.enterNote').html(currentNote);
         }
-        currentNote = $('.enterNote').val();
+        currentNote = $('.enterNote').html();
     });
 	
 	$('.newNoteBook').live('click', function(){
@@ -215,7 +269,8 @@ function populateNoteBookList(){
 
     var i = 0;
     for (var story in userStories){
-        if (userStories[story].userID == userID){
+        console.log(userStories[story])
+
             if (userStories[story].indexOf(storySearchBox)>=0){
                 var newElement = $('#nbeTemplate').clone();
                 newElement.attr('id', "s-"+i);
@@ -230,7 +285,7 @@ function populateNoteBookList(){
                 $(id).css("display", "block");
                 i++;
             }   
-        }
+        
     }
 };
 

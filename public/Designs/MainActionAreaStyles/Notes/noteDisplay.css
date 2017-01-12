@@ -252,3 +252,30 @@ input[type=button], input[type=button]:hover {
 	border:1px solid #acb1b7;
 	background-color:#ccc;
 }
+
+/**** LINK PREVIEW ***/
+.previewHolder{
+    width: 100%;
+    height: 120px;
+    float: left;
+}
+.previewTitle{
+    float: left;
+/*    margin: 10%;*/
+    height: 30px;
+    width: 100%;
+    font-weight: 400;
+}
+.previewImage{
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+    float: left;
+}
+.previewDescription{
+    width: 70%;
+    height: 80px;
+    float: left;
+}
