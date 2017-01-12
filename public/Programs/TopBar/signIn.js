@@ -34,6 +34,9 @@ var loginListener = function(){
                 console.log("fill in all");
             }
     });
+    $('.signUpBG').live('click', function(){
+        $('.logReg').hide();
+    })
 }
 
 var Login = function(){};
