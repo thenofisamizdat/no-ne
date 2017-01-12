@@ -7,7 +7,7 @@ User authentication is handled using Facebook OAuth 2.0.
 
 | File | Description |
 | ---- | ----------- |
-|[**server.js**](server.js)|Establishes a connection to the database and handles all perisitent data traffic between client(s) and backend. |
+|[**server.js**](server.js)|Establishes a connection to the database and handles all perisitent data traffic between client(s) and backend through RESTful API endpoints. |
 |[**index.html**](public/index.html)|This is the application hub. All .css design files and .js javascript programs connect here. This file also contains all markup and is the user entry point to the application.|
 |[**Program Folder**](public/Programs/)|This contains every javascript program that runs on the client side. For ease, programs are divided by the screen area in which they operate. (e.g- left navigation bar program is found in folder LeftBar, etc.)|
 |[**Design Folder**](public/Designs/)|As with the Programs folder, Designs contains every css stylesheet used to determine the look and feel of the client application. Again, designs are separated by the screen area which they style. (e.g- left navigation bar style is found in folder LeftBarStyles, etc.)|
