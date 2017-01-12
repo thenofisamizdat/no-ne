@@ -215,20 +215,21 @@ function populateNoteBookList(){
 
     var i = 0;
     for (var story in userStories){
-        
-        if (userStories[story].indexOf(storySearchBox)>=0){
-            var newElement = $('#nbeTemplate').clone();
-            newElement.attr('id', "s-"+i);
+        if (userStories[story].userID == userID){
+            if (userStories[story].indexOf(storySearchBox)>=0){
+                var newElement = $('#nbeTemplate').clone();
+                newElement.attr('id', "s-"+i);
 
-            $('.noteBookList').append(newElement);
-            var id = "#"+newElement.attr('id')+"";
+                $('.noteBookList').append(newElement);
+                var id = "#"+newElement.attr('id')+"";
 
-            // fill in each div with chat entry details
-            $(id).find('.nbeTitle').text(story);
-            if (selectedStories.indexOf(story)>=0) $(id).find('.nbeSelected').css("background-color", "#444");
-    
-            $(id).css("display", "block");
-            i++;
+                // fill in each div with chat entry details
+                $(id).find('.nbeTitle').text(story);
+                if (selectedStories.indexOf(story)>=0) $(id).find('.nbeSelected').css("background-color", "#444");
+
+                $(id).css("display", "block");
+                i++;
+            }   
         }
     }
 };

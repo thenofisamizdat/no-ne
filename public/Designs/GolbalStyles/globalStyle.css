@@ -184,7 +184,9 @@ html, body{
 }
 .profileName{
     float: right;
-    margin:10px;
+    margin:5px;
+    margin-top: 10px;
+    margin-right: 20px;
     font-size: 14px;
 }
 .leftHeader{

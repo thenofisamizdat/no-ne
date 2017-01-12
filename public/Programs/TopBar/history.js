@@ -100,26 +100,26 @@ function updateButtonStatus(){
     console.log(historyPosition + "hs")
     if (historyPosition == 0){
         $('.historyBack').css({
-            "background-color": "#aaa",
+            "background-image": "url('./Designs/images/downArrow.png')",
             "cursor":"default"
         })
     }
     else{
         $('.historyBack').css({
-            "background-color": "#000",
+            "background-image": "url('./Designs/images/boldArrow.png')",
             "cursor":"pointer"
         })
     }
     
     if (historyPosition >= historyHolder.length-1){
         $('.historyForward').css({
-            "background-color": "#aaa",
+            "background-image": "url('./Designs/images/downArrow.png')",
             "cursor":"default"
         })
     }
     else{
         $('.historyForward').css({
-            "background-color": "#000",
+            "background-image": "url('./Designs/images/boldArrow.png')",
             "cursor":"pointer"
         })
     }
