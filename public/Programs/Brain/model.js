@@ -1,4 +1,5 @@
 var userID = 123;
+var userName = "";
 
 var users = {};
 

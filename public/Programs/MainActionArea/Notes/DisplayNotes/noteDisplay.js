@@ -86,7 +86,7 @@ function displayAllNotes(){
     for (var note in notes){
         var currentNote = notes[note];
         if (currentNote.userID == userID){
-            if (((displayNoteFilter == "my notes")&&(currentNote.originID == (userID + "_" + currentNote.noteTitle))
+            if (((displayNoteFilter == "my notes")&&(currentNote.originID == (userID + "_" + currentNote.noteTitle)))
                 || ((displayNoteFilter == "grabbed notes")&&(currentNote.originID != (userID + "_" + currentNote.noteTitle)))
                 || (displayNoteFilter == "all notes")){
                 
@@ -101,6 +101,10 @@ function displayAllNotes(){
                     noteTemplate.data("noteID", notes[note].noteID);
                     $('.noteDisplayArea').append(noteTemplate);
                     noteID = "#" + noteID;
+                    console.log("pren " + noteID)
+                    
+                    getFacebookUserProfilePics(notes[note].userID, noteID);
+                    getFacebookUsernames(notes[note].userID, noteID);
                     $(noteID).find('.ndUsername').html(notes[note].userID);
                     $(noteID).find('.ndNoteTitleText').html(notes[note].noteTitle);
                     $(noteID).find('.ndNoteContent').html(notes[note].noteContent);

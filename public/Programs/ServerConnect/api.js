@@ -153,5 +153,33 @@ function getProfilePic(uid){
 		}
 	);
 };
+function getFacebookUserProfilePics(uid, noteid){
+	/* make the API call */
+    console.log("nnnnnnnnnnnnnnnnnn " + noteid)
+	FB.api(
+		"/"+uid+"/picture",
+		function (response) {
+			console.log(response["data"].url)
+			if (response && !response.error) {
+				/* handle the result */
+				//console.log(response)
+				$(noteid).find('.ndUserPic').css("background-image", "url("+response["data"].url+")");
+			}
+		}
+	);
+};
+function getFacebookUsernames(uid, noteid){
+    FB.api(
+		"/"+uid+"",
+		function (response) {
+			//console.log(response["data"].url)
+			if (response && !response.error) {
+				/* handle the result */
+				console.log(response)
+				$(noteid).find('.ndUsername').html(response.name);
+			}
+		}
+	);
+}
 
 

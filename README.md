@@ -62,3 +62,4 @@ Now when you visit `no-ne.eu-gb.mybluemix.net/` you are at the application's ent
   $ cf restart no-ne
   ```
   
+  [cloud_foundry_url]: https://github.com/cloudfoundry/cli
