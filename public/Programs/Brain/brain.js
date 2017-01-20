@@ -1,5 +1,5 @@
     var bm = new BM25();
-var calculateWordCount = function(searchTerm){
+var calculateNotebookCorpus = function(searchTerm){
     
 console.log("word count should now happen fuuuuuuuuuuuuuuuuuuck")
     bm = new BM25();

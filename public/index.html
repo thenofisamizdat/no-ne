@@ -194,8 +194,8 @@
     
     
     <div class="notesActionArea nda actionArea" style="display:block;">
-        <div class="ndaNoteDisplayOverlay ndaLarge" style="display:block;"></div>
-        <div class="ndaLargeNoteDisplay ndaLarge" style="display:block;">
+        <div class="ndaNoteDisplayOverlay ndaLarge" style="display:none;"></div>
+        <div class="ndaLargeNoteDisplay ndaLarge" style="display:none;">
             <div class="ndUserDetails">
                 <div class="ndUserPic"></div>
                 <div class="ndUsername">neil byrne</div>
@@ -206,7 +206,7 @@
                     Title of Note
                 </div>
             </div>
-            <div class="ndNoteContent ndaLargeContent">Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah...</div>
+            <div class="ndNoteContent ndaLargeContent" id="ndaL">Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah... Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah Content of note blah blah...</div>
             <div class="ndNoteToolBar">
                 <div class="ndTool ndStatsTool">a</div>
                 <div class="ndTool ndPeopleTool">p</div>
@@ -306,10 +306,11 @@
         updateButtonStatus();
         
         masterSearchListener();
+        loadNoteDisplaySection();
         
         loginListener();
-       // $('.signUp').hide();
-       //$('.signUpBG').hide();
+        $('.signUp').hide();
+        $('.signUpBG').hide();
         if (loggedIn){
     	$('.logInOut').html ("Log Out");
     }

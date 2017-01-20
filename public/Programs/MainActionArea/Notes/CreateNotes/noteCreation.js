@@ -28,6 +28,25 @@ function setNoteCreationStatus(ntbStatus){
     populateNote();
 }
 
+function displayLinkPreview(response, link){
+    var responseID = response.title.split(' ').join('').split('"').join('').split("'").join('').split('&').join('').split(':').join('').split(';').join('').split('!').join('').split('?').join('');
+        var responseHTML = "<br><div class='previewHolder'><div class='previewTitle'>"+response.title+"</div><div class='previewImage "+responseID+"'></div><div class='previewDescription'>"+response.description+"</div><div class='previewLink'>"+urlify(link)+"</div></div><br>&nbsp";
+        $('.enterNote').append(responseHTML);
+        responseID = "." + responseID;
+        try{
+            $(responseID).css({"background-image": "url('"+response.image+"')"});
+
+        }
+        catch(e){}
+
+        urlifiedLinks.push(link);
+        $('.busyGraphic').hide();
+        document.getElementById('nc').contentEditable = true;
+        placeCaretAtEnd(document.getElementById("nc"));
+        currentNote = $('.enterNote').html();
+        searchForString (currentNote + " " + currentTitle);
+}
+
 function urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function(url) {
@@ -68,8 +87,7 @@ function placeCaretAtEnd(el) {
     }
 }
 var urlifiedLinks = [];
-function noteToolBarControl() {
-    
+function noteToolBarControl() { 
     $('.enterTitle').keyup(function(){
         currentTitle = $('.enterTitle').val();
     });

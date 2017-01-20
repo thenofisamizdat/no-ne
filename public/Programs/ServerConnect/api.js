@@ -5,13 +5,15 @@ function getNotes() {
       for (var word in data) {
           try{
              var note = JSON.parse(data[word]);
+              console.log("--------------NOTE------------");
+              console.log(note);
               note.noteID = note.noteID.split("'").join('').split('"').join('');
                 notes[note.noteID] = note;
           }
         catch(e){}
       }
         console.log(notes)
-        calculateWordCount();
+        calculateNotebookCorpus();
     });
 }
 
@@ -34,7 +36,11 @@ function getNoteBooks() {
         stories = [];
       for (var word in data) {
           try{
+              console.log("--------------NOTEBOOKS-------------");
+              console.log(story);
               var story = JSON.parse(data[word]);
+              console.log("--------------NOTEBOOKS-------------");
+              console.log(story);
               story.storyID = story.storyID.split("'").join('').split('"').join('');
               stories[story.storyID] = story;
                 if (story.userID == userID) userStories[story.storyTitle] = story.storyID;
@@ -119,22 +125,9 @@ console.log ("linking -> " + link)
         dataType: 'jsonp',
         data: {q: link, key: "587793b24a9e735c6cd649a4462a97226296b44dc6b8d"},
         success: function (response) {
-            //return response;
-            var responseID = response.title.split(' ').join('').split('"').join('').split("'").join('').split('&').join('').split(':').join('').split(';').join('').split('!').join('').split('?').join('');
-            var responseHTML = "<br><div class='previewHolder'><div class='previewTitle'>"+response.title+"</div><div class='previewImage "+responseID+"'></div><div class='previewDescription'>"+response.description+"</div><div class='previewLink'>"+urlify(link)+"</div></div><br>&nbsp";
-            $('.enterNote').append(responseHTML);
-            responseID = "." + responseID;
-            try{
-                $(responseID).css({"background-image": "url('"+response.image+"')"});
-                
-            }
-            catch(e){}
+            //return response and display formatted link preview
+            displayLinkPreview(response, link);
             
-            urlifiedLinks.push(link);
-            $('.busyGraphic').hide();
-            document.getElementById('nc').contentEditable = true;
-            placeCaretAtEnd(document.getElementById("nc"));
-            currentNote = $('.enterNote').html();
         }
     });
 }

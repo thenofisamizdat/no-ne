@@ -10,6 +10,7 @@ function noteDisplayListeners(){
         var selectedNote = notes[$(this).data("noteID")];
         $('.ndaLargeTitle').html(selectedNote.noteTitle);
         $('.ndaLargeContent').html(selectedNote.noteContent);
+        $('.ndaLargeContent').find('.previewDescription').css('webkit-line-clamp', '5');
 //        if (!$(this).data("expanded")){
 //            $(this).css({
 //                "width": "80%",

@@ -38,6 +38,7 @@ var connectBarListener = function(){
         ntbStatus.createStoryButtonPressed = false;
         ntbStatus.currentTitle = notes[this.id].noteTitle;
         ntbStatus.currentNote = notes[this.id].noteContent; 
+        searchForString(currentNote + " " + currentTitle);
         loadNoteCreateSection();
         setNoteCreationStatus(ntbStatus);
     })

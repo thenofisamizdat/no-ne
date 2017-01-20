@@ -129,6 +129,12 @@
     overflow: hidden;
     white-space: normal;
 }
+#ndaL{
+    max-width: 50%;
+    height: 80%;
+    overflow-y: scroll;
+    margin-top: 1.5%;
+}
 .ndNoteContent{
 /*
     float: left;
@@ -270,23 +276,32 @@ input[type=button], input[type=button]:hover {
 .previewImage{
     background-repeat: no-repeat;
     background-size: contain;
-    margin-left: 5px;
+    margin-left: 0px;
     height: 80px;
     width: 80px;
     float: left;
 }
 .previewDescription{
-    width: 70%;
-    height: 47px;
+    max-width: 69%;
     float: left;
-    font-size: 11px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top:0px;
+    font-size:10px;
     padding-left: 5px;
+    font-weight:lighter;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    color: #000;
 }
 .previewLink{
     width: 50%;
     height: 12px;
     float: left;
-    font-size: 11px;
+    font-size: 10px;
     padding-left:  5px;
 }
 .busyGraphic{
